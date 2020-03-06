@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import people from './people';
+import people, { TPeople } from './people';
 
 export interface TReduxState {
-    people: any,
+    people: TPeople,
 }
 
 const mainReducer = combineReducers({

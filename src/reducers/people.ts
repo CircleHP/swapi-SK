@@ -1,6 +1,6 @@
 import { GET_PEOPLE, GET_PEOPLE_ERROR } from 'actions/actionTypes';
 
-interface TPeople {
+export interface TPeople {
     count: number | null;
     next: string | null;
     previous: string | null;
