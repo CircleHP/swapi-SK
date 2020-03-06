@@ -1,9 +1,15 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import actions from '../../actions';
+import { TReduxState } from 'reducers';
+import { hasMore } from 'selectors';
+import actions from 'actions';
 
-const PeopleList: React.FunctionComponent<any> = () => {
+interface TConnectedProps {
+    hasMore: any;
+}
+
+const PeopleList: React.FunctionComponent<TConnectedProps> = ({ hasMore }) => {
     useEffect(() => {
         actions.getPeople();
     }, [])
@@ -15,6 +21,6 @@ const PeopleList: React.FunctionComponent<any> = () => {
     );
 };
 
-export default connect((state: any) => ({
-
+export default connect((state: TReduxState) => ({
+    hasMore: hasMore(state),
 }))(PeopleList);
