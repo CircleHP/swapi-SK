@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+    box-sizing: border-box;
     width: 100%;
     height: 60px;
     display: flex;
@@ -20,6 +21,12 @@ export const Logo = styled.div`
     background-size: 60%;
     background-position: 50% 50%;
     background-repeat: no-repeat;
+
+    a {
+        width: 50%;
+        height: 100%;
+        cursor: pointer;
+    }
 `;
 
 export const SearchContainer = styled.div`
@@ -64,5 +71,10 @@ export const RoutesLink = styled.div`
     &:hover {
         cursor: pointer;
         border-bottom: 4px solid #ffe300;
+    }
+
+    a {
+        text-decoration: none;
+        color: #fff;
     }
 `;
