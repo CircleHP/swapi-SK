@@ -1,0 +1,7 @@
+{
+    "arrowParents": "always",
+    "printWidth": 120,
+    "singleQuote": true,
+    "tabWidth": 4,
+    "trailingComa": "es5",
+}

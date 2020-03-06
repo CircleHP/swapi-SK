@@ -1,11 +1,7 @@
 import React from 'react';
 
 const App: React.FunctionComponent = () => {
-  return (
-    <div>
-
-    </div>
-  );
+    return <div />;
 };
 
 export default App;
