@@ -1,6 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 
-const PeopleList: React.FunctionComponent = () => {
+import actions from '../../actions';
+
+const PeopleList: React.FunctionComponent<any> = () => {
+    useEffect(() => {
+        actions.getPeople();
+    }, [])
+
     return (
         <div>
             People list
@@ -8,4 +15,6 @@ const PeopleList: React.FunctionComponent = () => {
     );
 };
 
-export default PeopleList;
+export default connect((state: any) => ({
+
+}))(PeopleList);
