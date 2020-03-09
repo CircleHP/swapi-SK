@@ -1,10 +1,13 @@
 import React from 'react';
 
+import * as s from './styled';
+
 const Loader: React.FunctionComponent = () => {
     return (
-        <div>
-
-        </div>
+        <s.Container>
+            <s.Head />
+            <s.Body />
+        </s.Container>
     );
 };
 
