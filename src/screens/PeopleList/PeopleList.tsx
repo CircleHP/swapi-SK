@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
 
 import { TReduxState } from 'reducers';
-import { getPeoplesData, hasMore, hasPrevious, getNextPageLink, getSearchResults } from 'selectors';
+import { getPeoplesData, hasMore, hasPrevious, getNextPageLink, getItemsBySearchPhrase } from 'selectors';
 import actions from 'actions';
 import * as s from './styled';
-import Loader from 'components/Loader';
 import ListItem from './ListItem';
 
 interface TConnectedProps {
@@ -17,12 +16,14 @@ interface TConnectedProps {
     searchResults: any;
 }
 
-const PeopleList: React.FunctionComponent<TConnectedProps> = ({ peopleData, hasPrevious, hasMore, nextPageLink, searchResults }) => {
-    if(!peopleData ) {
+const PeopleList: React.FunctionComponent<TConnectedProps> = ({ peopleData, hasMore, nextPageLink, searchResults }) => {
+    if(!peopleData) {
         // @ts-ignore
-        actions.getPeople(nextPageLink)
-        return <Loader />
+        actions.getPeople(nextPageLink);
+        return null;
     }
+
+    console.log(searchResults);
 
     return (
         <s.Container>
@@ -32,8 +33,8 @@ const PeopleList: React.FunctionComponent<TConnectedProps> = ({ peopleData, hasP
                 loadMore={() => actions.getPeople(nextPageLink)}
                 hasMore={hasMore}
                 useWindow={false}
-                loader={<Loader />}
             >
+                {searchResults.length === 0 ?
                 <s.PeopleList>
                     {
                         peopleData.map((hero: any, i: number) => (
@@ -41,6 +42,15 @@ const PeopleList: React.FunctionComponent<TConnectedProps> = ({ peopleData, hasP
                         ))
                     }
                 </s.PeopleList>
+                :
+                <s.PeopleList>
+                    {
+                        searchResults.map((hero: any, i: number) => (
+                            <ListItem key={i} entityData={hero} />
+                        ))
+                    }
+                </s.PeopleList>
+                }
             </InfiniteScroll >
         </s.Container>
     );
@@ -51,5 +61,5 @@ export default connect((state: TReduxState) => ({
     hasPrevious: hasPrevious(state),
     peopleData: getPeoplesData(state),
     nextPageLink: getNextPageLink(state),
-    searchResults: getSearchResults(state),
+    searchResults: getItemsBySearchPhrase(state),
 }))(PeopleList);

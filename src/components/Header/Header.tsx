@@ -7,16 +7,18 @@ import * as s from './styled';
 const Header: React.FunctionComponent = () => {
     const [searchKey, setSearchKey] = useState('');
 
+    const handleChange = (e: any) => {
+        setSearchKey(e.target.value);
+        actions.setSearchKey(searchKey)
+    };
+
     return (
         <s.Container>
             <s.Logo>
                 <Link to="/" />
             </s.Logo>
             <s.SearchContainer>
-                <input type='text' placeholder='Dart Vader' onChange={(e) => {
-                    setSearchKey(e.target.value)
-                    actions.setSearchKey(searchKey)
-                    }}/>
+                <input type='text' placeholder='Dart Vader' onChange={(e) => handleChange(e)}/>
             </s.SearchContainer>
             <s.RoutesGroup>
                 <s.RoutesLink>
