@@ -5,7 +5,7 @@ export const getPeople = (nextPage: string) => {
         return fetch(nextPage)
             .then((res) => res.json())
             .then((data) => dispatch({type: GET_PEOPLE, payload: data}))
-            .catch((error) => dispatch({type: GET_PEOPLE_ERROR, error}))
+            .catch(() => dispatch({type: GET_PEOPLE_ERROR, payload: 'API-Error. Application is not available'}))
     };
 };
 

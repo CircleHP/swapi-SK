@@ -1,15 +1,13 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    width: 600px;
-    height: 600px;
+    width: 300px;
+    height: 300px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    left: 40em;
-    top: 10em;
+    margin: 0 auto;
 `;
 
 export const Head = styled.div`

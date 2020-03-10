@@ -6,9 +6,8 @@ export const Container = styled.div`
     overflow-y: auto;
     overflow-x: hidden;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+    justify-content: flex-start;
+    align-items: center;
     box-sizing: border-box;
 `;
 

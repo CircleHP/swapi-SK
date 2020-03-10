@@ -18,7 +18,7 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    font-family: 'Poller One', cursive;
+    font-family: 'Roboto', sans-serif;
 `;
 
 const Content = styled.div`

@@ -3,10 +3,12 @@ import { connect } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
 
 import { TReduxState } from 'reducers';
-import { getPeoplesData, hasMore, hasPrevious, getNextPageLink, getItemsBySearchPhrase } from 'selectors';
+import { getPeoplesData, hasMore, hasPrevious, getNextPageLink, getItemsBySearchPhrase, getErrorMessage } from 'selectors';
 import actions from 'actions';
 import * as s from './styled';
 import ListItem from './ListItem';
+import Loader from 'components/Loader';
+import people from 'reducers/people';
 
 interface TConnectedProps {
     peopleData: any;
@@ -14,9 +16,10 @@ interface TConnectedProps {
     hasMore: boolean;
     nextPageLink: string | null;
     searchResults: any;
+    error: string | null;
 }
 
-const PeopleList: React.FunctionComponent<TConnectedProps> = ({ peopleData, hasMore, nextPageLink, searchResults }) => {
+const PeopleList: React.FunctionComponent<TConnectedProps> = ({ peopleData, hasMore, nextPageLink, searchResults, error }) => {
     if(!peopleData) {
         // @ts-ignore
         actions.getPeople(nextPageLink);
@@ -34,7 +37,7 @@ const PeopleList: React.FunctionComponent<TConnectedProps> = ({ peopleData, hasM
                 hasMore={hasMore}
                 useWindow={false}
             >
-                {searchResults.length === 0 ?
+                {searchResults.length === 0 && !error ?
                 <s.PeopleList>
                     {
                         peopleData.map((hero: any, i: number) => (
@@ -42,7 +45,7 @@ const PeopleList: React.FunctionComponent<TConnectedProps> = ({ peopleData, hasM
                         ))
                     }
                 </s.PeopleList>
-                :
+                : searchResults ?
                 <s.PeopleList>
                     {
                         searchResults.map((hero: any, i: number) => (
@@ -50,8 +53,11 @@ const PeopleList: React.FunctionComponent<TConnectedProps> = ({ peopleData, hasM
                         ))
                     }
                 </s.PeopleList>
+                :
+                <div>{error}</div>
                 }
             </InfiniteScroll >
+            {peopleData.length !== 87 && <Loader />}
         </s.Container>
     );
 };
@@ -62,4 +68,5 @@ export default connect((state: TReduxState) => ({
     peopleData: getPeoplesData(state),
     nextPageLink: getNextPageLink(state),
     searchResults: getItemsBySearchPhrase(state),
+    error: getErrorMessage(state),
 }))(PeopleList);

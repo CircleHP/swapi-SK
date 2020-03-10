@@ -24,6 +24,7 @@ export interface TPeople {
         url: string
     }> | null,
     searchResults: any;
+    error: string | null;
 };
 
 const initialState = {
@@ -33,6 +34,7 @@ const initialState = {
     searchKey: '',
     results: null,
     searchResults: null,
+    error: null,
 };
 
 export default (state: TPeople = initialState, action: any) => {
@@ -46,6 +48,7 @@ export default (state: TPeople = initialState, action: any) => {
         case GET_PEOPLE_ERROR:
             return {
                 ...state,
+                error: action.payload,
             };
 
         case SET_SEARCH_KEY:
