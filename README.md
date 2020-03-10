@@ -1,5 +1,5 @@
 ## Stack:
--- React / Redux / TypeScript
+--- React / Redux / TypeScript
 
 ## Libraries:
 -- react-router-dom
