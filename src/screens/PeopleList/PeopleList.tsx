@@ -24,8 +24,6 @@ const PeopleList: React.FunctionComponent<TConnectedProps> = ({ peopleData, hasP
         return <Loader />
     }
 
-    console.log(searchResults)
-
     return (
         <s.Container>
             <InfiniteScroll
@@ -33,7 +31,7 @@ const PeopleList: React.FunctionComponent<TConnectedProps> = ({ peopleData, hasP
                 // @ts-ignore
                 loadMore={() => actions.getPeople(nextPageLink)}
                 hasMore={hasMore}
-                useWindow={true}
+                useWindow={false}
                 loader={<Loader />}
             >
                 <s.PeopleList>
