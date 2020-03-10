@@ -1,4 +1,4 @@
-import { GET_PEOPLE, GET_PEOPLE_ERROR, SHOW_NEXT, SHOW_NEXT_ERROR, SET_SEARCH_KEY } from 'actions/actionTypes';
+import { GET_PEOPLE, GET_PEOPLE_ERROR, SET_SEARCH_KEY, ADD_TO_FAVORITE } from 'actions/actionTypes';
 
 export interface TPeople {
     count: number | null;
@@ -25,6 +25,7 @@ export interface TPeople {
     }> | null,
     searchResults: any;
     error: string | null;
+    favorite: any;
 };
 
 const initialState = {
@@ -35,13 +36,14 @@ const initialState = {
     results: null,
     searchResults: null,
     error: null,
+    favorite: null,
 };
 
 export default (state: TPeople = initialState, action: any) => {
     switch (action.type) {
         case GET_PEOPLE:
             return {
-                ...action.payload,
+                ...state,
                 results: state.results ? [...state.results, ...action.payload.results] : action.payload.results,
             }
 
@@ -58,7 +60,13 @@ export default (state: TPeople = initialState, action: any) => {
                 // searchResults:
             };
 
+        case ADD_TO_FAVORITE:
+            return {
+                ...state,
+                favorite: state.favorite ? [...state.favorite, action.payload] : [action.payload],
+            }
+
         default:
-            return initialState;
+            return state;
     };
 };

@@ -8,7 +8,6 @@ import actions from 'actions';
 import * as s from './styled';
 import ListItem from './ListItem';
 import Loader from 'components/Loader';
-import people from 'reducers/people';
 
 interface TConnectedProps {
     peopleData: any;
@@ -41,7 +40,7 @@ const PeopleList: React.FunctionComponent<TConnectedProps> = ({ peopleData, hasM
                 <s.PeopleList>
                     {
                         peopleData.map((hero: any, i: number) => (
-                            <ListItem key={i} entityData={hero} />
+                            <ListItem key={i} entityData={{...hero, id: i + 1}} />
                         ))
                     }
                 </s.PeopleList>
@@ -49,7 +48,7 @@ const PeopleList: React.FunctionComponent<TConnectedProps> = ({ peopleData, hasM
                 <s.PeopleList>
                     {
                         searchResults.map((hero: any, i: number) => (
-                            <ListItem key={i} entityData={hero} />
+                            <ListItem key={i} entityData={{...hero, id: i + 1}} />
                         ))
                     }
                 </s.PeopleList>

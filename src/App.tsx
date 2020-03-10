@@ -5,6 +5,7 @@ import { Switch, Route} from 'react-router-dom';
 import Favorite from './screens/Favorite';
 import PeopleList from './screens/PeopleList';
 import Welcome from './screens/Welcome';
+import Details from './screens/Details';
 
 import Header from './components/Header';
 
@@ -38,7 +39,11 @@ const App: React.FunctionComponent = () => {
                     <Route exact path='/' render={() => <Welcome/>} />
                     <Route exact path='/favorite' render={() => <Favorite />} />
                     <Route exact path='/people-list' render={() => <PeopleList />} />
-                    {/* <Route exact path='people-list/:id' render={() => <Details />} /> */}
+                    <Route
+                        path="/people-list/:id"
+                        render={(props) => <Details id={props.match.params.id} />}
+                    />
+
                 </Switch>
             </Content>
         </Container>

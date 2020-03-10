@@ -11,6 +11,7 @@ export const Contaiener = styled.div`
     font-size: 42px;
     padding: 20px 0;
     user-select: none;
+    box-sizing: border-box;
 `;
 
 export const ButtonsGroup = styled.div`

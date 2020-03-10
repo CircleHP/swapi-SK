@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import * as s from './styled';
 
@@ -9,7 +10,9 @@ interface TOwnProps {
 const ListItem: React.FunctionComponent<TOwnProps> = ({ entityData }) => {
     return (
         <s.CardContainer>
-            {entityData.name}
+            <Link to={`/people-list/${entityData.id}`}>
+                {entityData.name}
+            </Link>
         </s.CardContainer>
     );
 };
