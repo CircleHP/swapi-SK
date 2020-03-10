@@ -10,7 +10,6 @@ export const Container = styled.div`
     justify-content: center;
     align-items: flex-start;
     box-sizing: border-box;
-    background: #333843;
 `;
 
 export const PeopleList = styled.div`
